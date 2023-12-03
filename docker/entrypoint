@@ -1,0 +1,6 @@
+#!/bin/bash
+set -x
+set -e
+
+# Boot the app
+python3 -u app.py

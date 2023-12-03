@@ -1,0 +1,23 @@
+version: '3.2'
+services:
+  bot:
+    build:
+      context: $HOME/discord-emoji-repack
+      cache_from:
+      - gorialis/discord.py:3.8-alpine-minimal
+      - python:3.8-alpine
+      labels:
+        org.opencontainers.image.authors: "Rei Hakurei"
+        org.opencontainers.image.description: "Docker Image for Emoji Repacker bot"
+        org.opencontainers.image.source: 'https://github.com/ReiFan49/discord-emoji-repacker'
+      tags:
+      - reifan49/emoji-repacker:0.1
+      - ghcr.io/reifan49/discord-emoji-repacker:0.1
+    image: reifan49/emoji-repacker:0.1
+    container_name: discord.emoji-repacker
+    pull_policy: build
+    volumes:
+    - type: bind
+      source: ./config.yml
+      target: /app/config.yml
+      read_only: true
