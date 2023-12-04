@@ -15,6 +15,7 @@ services:
       - ghcr.io/reifan49/discord-emoji-repacker:0.2
     image: reifan49/emoji-repacker:0.2
     container_name: discord.emoji-repacker
+    restart: always
     pull_policy: build
     volumes:
     - type: bind
