@@ -14,6 +14,7 @@ from modules import shared
 
 import plugins.sync
 import plugins.watch
+import plugins.cleaner
 import plugins.repack
 
 intents = discord.Intents.all()
@@ -65,6 +66,7 @@ async def setup(bot):
   await bot.add_cog(plugins.watch.File(bot, ['config.yml']))
   await bot.add_cog(plugins.sync.Feature(bot))
   await bot.add_cog(plugins.repack.Packer(bot))
+  await bot.add_cog(plugins.cleaner.Startup(bot))
   print("Logging in...")
   await bot.start(
     shared.config.cred.token,
