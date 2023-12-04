@@ -40,7 +40,8 @@ async def bot_auto_destroy_owned():
     if server.me == server.owner:
       n += 1
       await server.delete()
-  print(f"Destroyed {n} dud guilds")
+  if n > 0:
+    print(f"Destroyed {n} dud guilds")
 
 async def main():
   async with bot:
