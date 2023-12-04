@@ -208,17 +208,15 @@ class Packer(Cog, name='Emoji Repacker'):
           await add_emoji_to_server(server, emote)
           await i.edit_original_response(content=f"Uploaded {n+1}/{len(emote_chunks)} emotes..")
 
+        await i.followup.send(content=server_invite.url)
         if len(emote_chunks) <= 50:
-          await i.edit_original_response(content=server_invite.url)
+          await i.edit_original_response(content='Please join the server to finalize it.')
           await assign_and_leave_on_join(server)
         else:
           await i.edit_original_response(content=f"Due to Discord Rate Limiting concern, emote migration takes a background queue.")
-          await i.followup.send(content=server_invite.url)
           await assign_and_bg_on_join(server, emote_chunks[50:])
     except Exception as e:
       raise e
-    else:
-      await i.edit_original_response(content=f'{name} server repacked.')
     finally:
       if i.extras['server'] is not None:
         await i.extras['server'].delete()
