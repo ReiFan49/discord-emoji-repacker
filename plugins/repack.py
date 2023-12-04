@@ -107,6 +107,8 @@ class Packer(Cog, name='Emoji Repacker'):
     if 'icon.png' in zio.namelist():
       server_icon = zio.read('icon.png')
 
+    bot_avatar  = await i.client.user.display_avatar.read()
+
     async def add_emoji_to_server(server, emote):
       try:
         await server.create_custom_emoji(
@@ -203,6 +205,12 @@ class Packer(Cog, name='Emoji Repacker'):
         top_channel = text_channels[0]
         server_invite = await top_channel.create_invite(reason='via Emoji Repacker')
         print(server_invite.url)
+        hook = await top_channel.create_webhook(
+          name='Server Notice',
+          avatar=bot_avatar,
+        )
+        await hook.send(content=f"Link to this server, {server_invite.url}")
+        await hook.delete()
 
         for n, emote in zip(range(len(emote_chunks[:50])), emote_chunks[:50]):
           await add_emoji_to_server(server, emote)
