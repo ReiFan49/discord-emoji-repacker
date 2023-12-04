@@ -12,7 +12,9 @@ services:
         org.opencontainers.image.source: 'https://github.com/ReiFan49/discord-emoji-repacker'
       tags:
       - reifan49/emoji-repacker:0.2
+      - reifan49/emoji-repacker:0.2.1
       - ghcr.io/reifan49/discord-emoji-repacker:0.2
+      - ghcr.io/reifan49/discord-emoji-repacker:0.2.1
     image: reifan49/emoji-repacker:0.2
     container_name: discord.emoji-repacker
     restart: always
