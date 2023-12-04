@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 import os
+import sys
 import yaml
 import asyncio
 import logging
 
 import discord
-from discord.utils import oauth_url
+from discord.utils import setup_logging, oauth_url
 from discord.ext import commands, tasks
 from discord.ext.commands import CommandNotFound
 
@@ -52,13 +53,23 @@ async def main():
     finally:
       await teardown(bot)
 
+def setup_logger():
+  handler = logging.StreamHandler(stream=sys.stderr)
+  # logging.getLogger('discord.http').setLevel(logging.DEBUG)
+  setup_logging(handler=handler)
+
 async def setup(bot):
+  setup_logger()
+
   print("Appending modules...")
   await bot.add_cog(plugins.watch.File(bot, ['config.yml']))
   await bot.add_cog(plugins.sync.Feature(bot))
   await bot.add_cog(plugins.repack.Packer(bot))
   print("Logging in...")
-  await bot.start(shared.config.cred.token, reconnect=True)
+  await bot.start(
+    shared.config.cred.token,
+    reconnect=True,
+  )
 
 async def teardown(bot):
   pass
@@ -78,8 +89,5 @@ if __name__ == '__main__':
       permissions=discord.Permissions(0),
     )
   )
-
-  logger = logging.getLogger('discord.http')
-  logger.setLevel(logging.DEBUG)
 
   asyncio.run(main())
