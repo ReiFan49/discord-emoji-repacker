@@ -11,9 +11,9 @@ services:
         org.opencontainers.image.description: "Docker Image for Emoji Repacker bot"
         org.opencontainers.image.source: 'https://github.com/ReiFan49/discord-emoji-repacker'
       tags:
-      - reifan49/emoji-repacker:0.1
-      - ghcr.io/reifan49/discord-emoji-repacker:0.1
-    image: reifan49/emoji-repacker:0.1
+      - reifan49/emoji-repacker:0.2
+      - ghcr.io/reifan49/discord-emoji-repacker:0.2
+    image: reifan49/emoji-repacker:0.2
     container_name: discord.emoji-repacker
     pull_policy: build
     volumes:
