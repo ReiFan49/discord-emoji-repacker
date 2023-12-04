@@ -120,6 +120,7 @@ class Packer(Cog, name='Emoji Repacker'):
     def wait_for_join(server):
       def check(member):
         return member.guild == server
+      return check
 
     async def baton_pass_and_leave(server, user):
       await server.edit(owner=user)
