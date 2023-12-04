@@ -16,7 +16,7 @@ import plugins.sync
 import plugins.watch
 import plugins.repack
 
-intents = discord.Intents().all()
+intents = discord.Intents.all()
 bot = commands.Bot(
   '+^',
   help_command=None,
